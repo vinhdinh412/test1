@@ -1,0 +1,43 @@
+{# app/Resources/views/form/showdata.html.twig #}
+
+<html>
+<head>
+<title>demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body style="margin-top: 10 ">
+
+<header>
+<div style="margin: 10 580px">
+<h1>{{"show.title"|trans}}</h1>
+</div>
+</header>
+<div class="container">
+<div class="row">
+<div class="col-lg-4"> <a><img src="http://webcoban.vn/public/home/img_demo/h1.jpg" alt="100%*280" style="height:280px;width:356px" id="1"></a>
+<p>{{"form.project"|trans}}:{{getits.task}}</p>
+<p>{{"form.begin"|trans}}:{{ getits.dueDate|date("d/m/Y") }}</p>
+<p>{{"form.end"|trans}}:{{ getits.endDate|date("d/m/Y") }}</p>
+
+<p><a  href='{{path('show')}}' ><button type="button" class="btn-default btn">{{"show.home"|trans}}</button></a></p>
+<p><a  href='{{path('logout')}}' ><button type="button" class="btn-default btn">{{"form.logout"|trans}}</button></a></p>
+   {% if is_granted('ROLE_ADMIN') %}
+       <p> <a  href='{{path('form')}}' ><button type="button" class="btn-default btn">{{"show.create"|trans}}</button></a></p>
+      <p>  <a  href='{{path('data',{"person": getits.person})}}' ><button type="button" class="btn-default btn">{{"form.edit"|trans}}</button></a></p>
+        {% endif %}
+    
+</div>
+<div class="col-lg-6 offset-lg-2"> 
+
+   <p>{{"form.work"|trans}}: {{getits.person}}</p>
+   <p>{{"form.note"|trans}}: {{getits.note}}</p>
+
+ 
+
+
+</div></div></div>
+
+</body>
+</html>

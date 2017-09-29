@@ -1,0 +1,52 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    access_denied_url: /deny
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        in_memory:
+            memory: 
+                users:
+                    ryan:
+                        password: ryanpass
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: 123
+                        roles: 'ROLE_ADMIN'
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: show
+                always_use_default_target_path: true
+            # activate different ways to authenticate
+            logout:
+                path:   /logout
+                target: /login 
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/, roles: [ROLE_ADMIN,ROLE_USER] }
+        - { path: ^/en/show, roles: [ROLE_ADMIN,ROLE_USER] }
+        - { path: ^/vn/show, roles: [ROLE_ADMIN,ROLE_USER] }
+        - { path: ^/en/form, roles: [ROLE_ADMIN] }
+        - { path: ^/vn/form, roles: [ROLE_ADMIN] }
+        - { path: ^/en/data, roles: [ROLE_ADMIN] }
+        - { path: ^/vn/data, roles: [ROLE_ADMIN] }
+
+
+        
+
+            

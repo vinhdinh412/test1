@@ -1,0 +1,14 @@
+form.work: Author
+form.note: Note
+form.begin: BeginDate
+form.end: EndDate
+form.project: Project
+form.save: Create
+form.reset: Reset 
+form.edit: Edit
+form.delete: Delete
+form.logout: Logout
+show.title: Project
+show.home: Home
+show.create: CREATE 
+show.table: Typical projects

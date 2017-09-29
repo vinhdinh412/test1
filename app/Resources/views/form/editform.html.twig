@@ -1,0 +1,78 @@
+{# app/Resources/views/form/newform.html.twig #}
+
+<html>
+<head>
+<title>demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body style="margin-top: 10 ">
+<header>
+
+<div style="margin: 10 580px">
+<h1>{{"show.title"|trans}}</h1>
+<select id="lang" style="margin: 0 400px">
+    <option id="en" value="en" {%if app.request.locale=="en"%} selected{% endif %}>Eng</option>
+    <option id="vi" value="vn" {%if app.request.locale=="vn"%} selected{% endif %}>Vie</option>
+</select>
+</div>
+
+</header>
+{{ form_start(form) }}
+ 
+<div class="container" style="margin-top: 30 " >
+<a style="margin: 10 350px"><img src="http://webcoban.vn/public/home/img_demo/h1.jpg"></a>
+    <div style="margin-top: 20 " >
+        {{ form_label(form.task) }}
+        {{ form_errors(form.task) }}
+        {{ form_widget(form.task) }}
+    </div>
+
+     <div>
+        {{ form_label(form.person) }}
+        {{ form_errors(form.person) }}
+        {{ form_widget(form.person) }}
+    </div>
+<div class="row">
+    <div class="col-lg-6">
+        {{ form_label(form.dueDate) }}
+        {{ form_errors(form.dueDate) }}
+        {{ form_widget(form.dueDate) }}
+    </div>
+
+    <div >
+        {{ form_label(form.endDate) }}
+        {{ form_errors(form.endDate) }}
+        {{ form_widget(form.endDate) }}
+    </div>
+</div>
+    <div>
+        {{ form_label(form.note) }}
+        
+        {{ form_widget(form.note) }}
+    </div>
+<div class="row" style="margin-top: 10" >
+    <ul >
+ 		{{ form_widget(form.logout) }}
+        {{ form_widget(form.save) }}
+        {{ form_widget(form.delete) }}
+        <a  href='{{path('form')}}' ><button type="button" class="btn-default btn">{{"show.create"|trans}}</button></a>
+     
+    </ul>
+    </div>
+
+</div>
+
+{{ form_end(form) }}
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script>
+   $("#lang").change(function(){
+    $(location).attr("href","/"+$(this).val()+"/show")  
+   })
+</script>
+</body>
+</html>

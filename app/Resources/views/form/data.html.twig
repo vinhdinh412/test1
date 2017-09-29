@@ -1,0 +1,43 @@
+{# app/Resources/views/form/newform.html.twig #}
+
+<html>
+<head>
+<title>demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body style="margin-top: 10 ">
+
+<header>
+<div style="margin: 10 580px">
+<h1>{{"show.home"|trans}}</h1>
+<select id="lang" style="margin: 0 400px">
+    <option id="en" value="en" {%if app.request.locale=="en"%} selected{% endif %}>Eng</option>
+    <option id="vi" value="vn" {%if app.request.locale=="vn"%} selected{% endif %}>Vie</option>
+</select>
+</div>
+<h4 style="margin: 40 100px ">{{"show.table"|trans}}:</h4>
+</header>
+<div class="album text-muted">
+<div class="container">
+<div class="row">
+{% for weed in wee %}
+<div class="card" >
+
+    <a href="{{path('database',{"person": weed.person})}}"><img src="http://webcoban.vn/public/home/img_demo/h1.jpg" alt="100%*280" style="height:280px;width:356px" id="1">
+   <p class="card-text"> {{weed.person}}</p></a>
+</div>
+{% endfor %}
+</div></div></div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script>
+   $("#lang").change(function(){
+    $(location).attr("href","/"+$(this).val()+"/show")  
+   })
+</script>
+</body>
+</html>
