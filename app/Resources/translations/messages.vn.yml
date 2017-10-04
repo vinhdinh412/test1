@@ -10,5 +10,6 @@ form.delete: Xóa
 form.logout: Đăng xuất
 show.title: Dự án
 show.home: Trang chủ
-show.create: TẠO MỚI
+show.create: Tạo mới
 show.table: Các dự án tiêu biểu
+show.project: Hình ảnh

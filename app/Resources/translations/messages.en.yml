@@ -10,5 +10,6 @@ form.delete: Delete
 form.logout: Logout
 show.title: Project
 show.home: Home
-show.create: CREATE 
+show.create: Create 
 show.table: Typical projects
+show.project: Picture

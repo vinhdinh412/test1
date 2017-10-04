@@ -13,16 +13,15 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-// tao form moi de hien thi du lieu,quyen admin, nghien cuu test
+
 class FormController extends Controller
 {
     /**
      * @Route("/{_locale}/form",name="form")//duong dan
      */
-   public function createnew(Request $request)//trang chu
+   public function createnew(Request $request)
    {
 
-     // create a task and give it some dummy data for this example
         $task = new Task();
         $task->setDueDate(new \DateTime('tomorrow'));
         $task->setEndDate(new \DateTime('tomorrow'));
@@ -36,23 +35,19 @@ class FormController extends Controller
             ->add('dueDate', DateType::class,['label'=>'form.begin'])
             ->add('endDate', DateType::class,['label'=>'form.end'])
             ->add('note', TextareaType::class,['label'=>'form.note','required'=>''])
-            ->add('save', SubmitType::class, array('label' => 'form.save'))
-           // ->add('logout', SubmitType::class, array('label' => 'form.logout'))
+            ->add('save', SubmitType::class, array('label' => 'form.save')
             ->add('reset',Resettype::class,array('label'=>'form.reset'))
             ->getForm();
 
         $form->handleRequest($request);//lay request
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
+
         $task = $form->getData();
 
     if ($form->getClickedButton() && 'logout' === $form->getClickedButton()->getName())
            
         {return $this->redirectToRoute('logout');}
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);
         $em->flush();
@@ -96,8 +91,7 @@ class FormController extends Controller
  $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
+
         $task = $form->getData();
         if ($form->getClickedButton() && 'delete' === $form->getClickedButton()->getName())
 {$em2 = $this->getDoctrine()->getManager();
@@ -108,8 +102,6 @@ return $this->redirectToRoute('show');}
  if ($form->getClickedButton() && 'logout' === $form->getClickedButton()->getName())
         {return $this->redirectToRoute('logout');}
 
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);
         $em->flush();

@@ -1,4 +1,4 @@
-{# app/Resources/views/form/newform.html.twig #}
+{# app/Resources/views/form/data.html.twig #}
 
 <html>
 <head>
@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body style="margin-top: 10 ">
-
+<body>
+<div style="background-image:url(https://www.walldevil.com/wallpapers/a50/themes-desktop-wallpapers-photo-gallery-windows-plumeria-wallpaper.jpg)  ">
 <header>
 <div style="margin: 10 580px">
 <h1>{{"show.home"|trans}}</h1>
@@ -19,17 +19,39 @@
 </div>
 <h4 style="margin: 40 100px ">{{"show.table"|trans}}:</h4>
 </header>
-<div class="album text-muted">
-<div class="container">
-<div class="row">
-{% for weed in wee %}
-<div class="card" >
 
-    <a href="{{path('database',{"person": weed.person})}}"><img src="http://webcoban.vn/public/home/img_demo/h1.jpg" alt="100%*280" style="height:280px;width:356px" id="1">
-   <p class="card-text"> {{weed.person}}</p></a>
+<div class="content">
+<table class="table table-striped table-bordered table-hover" style="background-color:#fff" id="table1">
+<thead>
+ <tr>
+ 	  <th style="text-align:center">{{"form.project"|trans}}</th>
+      <th style="text-align:center">{{"form.work"|trans}}</th>
+      <th style="text-align:center">{{"form.begin"|trans}}</th>
+      <th style="text-align:center">{{"form.end"|trans}}</th>
+      <th style="text-align:center"> {{"show.project"|trans}}</th>
+    </tr>
+</thead>
+{% for weed in wee %}
+<div>
+
+<tbody>
+<tr>
+<td style="text-align:center">
+    <a href="{{path('database',{"person": weed.person})}}">
+   <p class="card-text"> {{weed.task}}</p></a></td>
+<td style="text-align:center">
+   <p class="card-text"> {{weed.person}}</p></td>
+<td style="text-align:center">
+   <p class="card-text"> {{weed.dueDate|date("d/m/Y")}}</p></td>
+<td style="text-align:center">
+   <p class="card-text"> {{weed.endDate|date("d/m/Y")}}</p></td>
+ <td style="text-align:center"> 
+ 	<p style="text-align:center"><a href="{{path('database',{"person": weed.person})}}"><img src="http://webcoban.vn/public/home/img_demo/h1.jpg" width=200px ></a></td>
+   </tr></div></tbody>
 </div>
-{% endfor %}
-</div></div></div>
+{% endfor %}</table>
+
+</div>
 <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
